@@ -10,6 +10,10 @@ import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
 import staffRoutes from './routes/staff.js';
 import securityRoutes from './routes/security.js';
+import orderRoutes from './routes/orders.js';
+import reservationRoutes from './routes/reservations.js';
+import cakeJobRoutes from './routes/cakeJobs.js';
+import scheduleRoutes from './routes/schedule.js';
 
 // Step 1: Stop startup early if important configuration is missing.
 const requiredSettings = ['MONGODB_URI', 'JWT_SECRET', 'CLIENT_ORIGIN'];
@@ -50,11 +54,15 @@ app.use((request, response, next) => {
 });
 // Step 3: Attach API routes. Each route lives in its own file.
 app.get('/api/health', (_request, response) => {
-  response.json({ status: 'ok', application: 'OrderBoard', phase: 1 });
+  response.json({ status: 'ok', application: 'OrderBoard', phase: 2 });
 });
 app.use('/api/auth', authRoutes); // Login, logout and current account.
 app.use('/api/staff', staffRoutes);
-app.use('/api/security', securityRoutes); // Owner-only staff management.
+app.use('/api/security', securityRoutes);
+app.use('/api/reservations', reservationRoutes);
+app.use('/api/cake-jobs', cakeJobRoutes);
+app.use('/api/schedule', scheduleRoutes);
+app.use('/api/orders', orderRoutes); // Phase 2: protected order management // Owner-only staff management.
 
 // Unexpected server errors should not reveal database details to the browser.
 app.use((error, _request, response, _next) => {
