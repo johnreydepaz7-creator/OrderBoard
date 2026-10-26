@@ -1,0 +1,31 @@
+# Installed dependencies
+node_modules/
+**/node_modules/
+
+# Environment files containing passwords and secrets
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Allow safe example environment files
+!.env.example
+!**/.env.example
+
+# Build output
+dist/
+**/dist/
+build/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local configuration
+*.local
